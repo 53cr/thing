@@ -20,12 +20,14 @@ class Diet
     items = @items.map do |item|
       $ITEMS[item]
     end
+
     total_cals = items.map { |item|
-      item['calories']
-    }.inject(&:+)
+      item[:calories].to_i
+    }.inject { |sum,value| sum + value }
+
     fat_cals = items.map { |item|
-      item['calories_from_fat']
-    }.inject(&:+)
+      item[:calories_from_fat].to_i
+    }.inject{ |sum,value| sum + value }
 
     return 100*(fat_cals / total_cals.to_f).round
   end
