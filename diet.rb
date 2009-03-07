@@ -85,6 +85,9 @@ class Diet
   end
 
   def mutate_delete
+    if @items.size == 1
+      return self
+    end
     new_items = @items.dup
     new_items.delete_at( rand(new_items.size) )
     d = Diet.new(new_items)
