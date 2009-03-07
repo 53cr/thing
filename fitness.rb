@@ -1,13 +1,11 @@
 #diet is array of item names
 class Diet
   def fitness
+    @@fitnesses ||= {}
     sorted = @items.sort
-    if !@@fitnesses[sorted]
-      @@fitnesses[sorted] = self.fitness_nonmemo
-    end
-    @@fitnesses[sorted]
-  end      
-    
+    @@fitnesses[sorted] ||= self.fitness_nonmemo
+  end
+
   def fitness_nonmemo
     score = 0
     if constraints_ok? diet
@@ -24,7 +22,7 @@ class Diet
       total_fiber = diet.inject(0) {|sum,item| sum + Integer($ITEMS[item][:fiber]) }
       score -= 3 * (20 - total_fiber).abs
       # Remove 50 pts for each missing portion of fruits, vegetables, milk, or meat
-      types = diet.map { |item| $ITEMS[item][:type] }.inject(Hash.new(0)) # NOT DONE
+      types = diet.map { |item| $ITEMS[item][:type] } # NOT DONE
       # Remove 20 pts for each extra portion of fruits, vegetables, milk or meat
       # Remove 2 pts for each 1g of trans or saturated fats
     end
