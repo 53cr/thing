@@ -1,6 +1,14 @@
 #diet is array of item names
 class Diet
-  def fitness(diet)
+  def fitness
+    sorted = @items.sort
+    if !@@fitnesses[sorted]
+      @@fitnesses[sorted] = self.fitness_nonmemo
+    end
+    @@fitnesses[sorted]
+  end      
+    
+  def fitness_nonmemo
     score = 0
     if constraints_ok? diet
       # Start with a base score of 1000
