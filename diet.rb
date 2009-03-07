@@ -10,16 +10,19 @@ class Diet
 
   @@fitnesses = {}
   @@best = 0
-  
   attr_accessor :items
-  
+
   def initialize(arr)
     @items = arr
     @stale = 0
   end
 
   def seed
-    @items = ["Oranges", "Oranges", "Oranges", "Oranges"]
+    size = rand(9)+1
+    @items = []
+    size.times do
+      @items << $IKEYS[rand($IKEYS.size)]
+    end
     @stale = 0
   end
   
@@ -38,7 +41,7 @@ class Diet
 
     return 100*(fat_cals / total_cals.to_f).round
   end
-  
+
   def mutate
     seed if @stale == 1000
 
@@ -80,6 +83,9 @@ class Diet
   end
 
   def mutate_delete
+    if @items.size == 1
+      return self
+    end
     new_items = @items.dup
     new_items.delete_at( rand(new_items.size) )
     d = Diet.new(new_items)
