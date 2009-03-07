@@ -6,13 +6,14 @@ class Diet
   end
 
   def fitness_nonmemo
+    diet = self.items
     score = 0
-    if constraints_ok? diet
+    if constraints_ok?
       # Start with a base score of 1000
       score = 1000
-      total_cals = diet.inject(0) {|sum,item| sum + Integer($ITEMS[item][:calories]) }
 
       # Remove 1 pt for each calorie over or under 2000
+      total_cals = diet.inject(0) {|sum,item| sum + Integer($ITEMS[item][:calories]) }
       score -= 1 * (2000 - total_cals).abs
 
       # Remove 5 pts of each percentage of fatty calories over 25%
