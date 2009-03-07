@@ -2,11 +2,11 @@
 class Diet
   def fitness
     sorted = @items.sort
-    @@fitnesses[sorted] ||= self.fitness_nonmemo
+    @@fitnesses[sorted] ||= fitness_nonmemo
   end
 
   def fitness_nonmemo
-    diet = self.items
+    diet = items
     score = 0
     if constraints_ok?
       # Start with a base score of 1000
