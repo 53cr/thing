@@ -459,7 +459,7 @@ Nuts:
   :protein: "2"
   :cholesterol: "0"
 Broccoli: 
-  :type: "fruit and vegetables"
+  :type: "fruit and vegetable"
   :vitamin_a: "11"
   :sodium: "30"
   :vitamin_c: "135"
@@ -476,7 +476,7 @@ Broccoli:
   :protein: "3"
   :cholesterol: "0"
 Apple: 
-  :type: "fruit and vegetables"
+  :type: "fruit and vegetable"
   :vitamin_a: "1"
   :sodium: "1"
   :vitamin_c: "10"
@@ -493,7 +493,7 @@ Apple:
   :protein: "0"
   :cholesterol: "0"
 Oranges: 
-  :type: "fruit and vegetables"
+  :type: "fruit and vegetable"
   :vitamin_a: "8"
   :sodium: "0"
   :vitamin_c: "139"
