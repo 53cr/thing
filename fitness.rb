@@ -17,7 +17,7 @@ class Diet
       score -= 1 * (2000 - total_cals).abs
 
       # Remove 5 pts of each percentage of fatty calories over 25%
-      total_fat_over_25 = diet.percentage_of_calories_from_fats - 25
+      total_fat_over_25 = self.percentage_of_calories_from_fats() - 25
       score -= 5 * ( total_fat_over_25 > 0 ? total_fat_over_25 : 0 ) # only care about OVER
 
       # Remove 2 pts for each 1g of protein over or under 100
