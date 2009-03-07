@@ -19,7 +19,12 @@ class Diet
   end
 
   def seed
-    @items = ["Oranges", "Oranges", "Oranges", "Oranges"]
+    size = rand(9)+1
+    @items = []
+    size.times do
+      @items << $IKEYS[rand($IKEYS.size)]
+    end
+    puts ">> reinit with: #{self.to_s}"
     @stale = 0
   end
   
