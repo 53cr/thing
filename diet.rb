@@ -44,9 +44,12 @@ class Diet
     evo = self.send(meth)
 
     new_fitness = evo.fitness
+    old_fitness = self.fitness
 
+    #puts "OLD: #{old_fitness}; NEW #{new_fitness}"
+    
     if ( evo.constraints_ok? and (new_fitness > self.fitness) )
-      puts "New best: "
+      puts "New best [#{new_fitness}]: (#{evo.items.join '), ('})"
       return evo
     else
       return self
@@ -60,24 +63,28 @@ class Diet
   private
   def mutate_insert
     new_item = $IKEYS[rand($IKEYS.size)]
-    Diet.new(@items.push(new_item))
+    Diet.new(@items.dup.push(new_item))
   end
 
   def mutate_delete
-    new_items = @items
+    new_items = @items.dup
     new_items.delete_at( rand(new_items.size) )
     Diet.new(new_items)
   end
 
   def mutate_swap
-    new_items = @items
+    new_items = @items.dup
     new_items[rand(new_items.size)] = $IKEYS[rand($IKEYS.size)]
-    Diet.new(@items)
+    Diet.new(new_items)
   end
 
 end
 
 if __FILE__ == $0
   diet = Diet.new(["Oranges", "Oranges", "Oranges", "Oranges"])
-  puts diet.mutate.items
+
+  100000.times do
+    diet = diet.mutate
+  end
+
 end
