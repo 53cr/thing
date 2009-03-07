@@ -8,10 +8,26 @@ require 'fitness'
 
 class Diet
 
+  @@fitnesses = {}
+  
   attr_accessor :items
   
   def initialize(arr)
     @items = arr
+  end
+
+  def percentage_of_calories_from_fats
+    items = @items.map do |item|
+      $ITEMS[item]
+    end
+    total_cals = items.map { |item|
+      item['calories']
+    }.inject(&:+)
+    fat_cals = items.map { |item|
+      item['calories_from_fat']
+    }.inject(&:+)
+
+    return 100*(fat_cals / total_cals.to_f).round
   end
   
   def mutate
@@ -25,7 +41,7 @@ class Diet
     end
     evo = self.send(meth)
 
-    new_fitness     = evo.fitness
+    new_fitness = evo.fitness
 
     if ( evo.constraints_ok? and (new_fitness > self.fitness) )
       puts "New best: "
