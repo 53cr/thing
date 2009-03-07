@@ -64,7 +64,9 @@ class Diet
       @stale = 0
       if new_fitness > @@best
         @@best = new_fitness
-      puts "New best [#{1000-new_fitness}]:\n" + evo.to_s
+      puts "-" *30 + "\n" +
+           "New best [#{1000-new_fitness}]:\n" +
+            evo.to_s
       end
       return evo
     else
@@ -132,8 +134,13 @@ class Diet
 
   def to_s
     hash = Hash.new(0)
-    items.sort.map { |value| hash[value]+=1} 
-    hash.map { |key,value| "#{value} x #{key}" }.join("\n") + "\n" + nutritional_values.to_s
+    items.sort.map { |value| hash[value]+=1}
+    output = []
+    output << '-'*30 
+    output += hash.map { |key,value| "#{value} x #{key}" }
+    output << "\n"
+    output << nutritional_values.to_s
+    output.join("\n") + "\n"
   end
 end
 
