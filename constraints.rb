@@ -1,5 +1,5 @@
 class Diet
   def constraints_ok?
-    @items.size 
+    @items.size <= 10
   end
 end

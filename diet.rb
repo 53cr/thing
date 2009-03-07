@@ -17,9 +17,9 @@ class Diet
   
   def mutate
     case rand(10)
-    when 0:
+    when 0 then
       meth = :mutate_insert
-    when 1:
+    when 1 then
       meth = :mutate_delete
     else
       meth = :mutate_swap
@@ -29,7 +29,11 @@ class Diet
     current_fitness = self.fitness
     new_fitness     = evo.fitness
 
-    return (new_fitness > current_fitness) ? evo : self
+    if ( evo.constraints_ok? and (evo.fitness > self.fitness) )
+      return evo
+    else
+      return self
+    end
   end
 
   private
