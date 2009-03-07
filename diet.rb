@@ -9,9 +9,9 @@ require 'fitness'
 class Diet
 
   @@fitnesses = {}
-  
+
   attr_accessor :items
-  
+
   def initialize(arr)
     @items = arr
   end
@@ -31,7 +31,7 @@ class Diet
 
     return 100*(fat_cals / total_cals.to_f).round
   end
-  
+
   def mutate
     case rand(10)
     when 0 then
@@ -47,7 +47,7 @@ class Diet
     old_fitness = self.fitness
 
     #puts "OLD: #{old_fitness}; NEW #{new_fitness}"
-    
+
     if ( evo.constraints_ok? and (new_fitness > self.fitness) )
       puts "New best [#{1000-new_fitness}]: #{evo.items.sort.join ' : '}"
       return evo

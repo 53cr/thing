@@ -1,1 +1,10 @@
 New best [960]: (2% Milk), (Red Potato, Baked), (Vanilla Yogurt), (Brown Rice, Cooked (195g)), (Red Potato, Baked), (Chicken Bread), (Red Potato, Baked), (Nuts), (Orange Juice), (Red Potato, Baked)
+
+New best [40]:
+2% Milk 
+Brown Rice, Cooked (195g)
+Chicken Bread
+Nuts
+Orange Juice
+4 x Red Potato, Baked
+Vanilla Yogurt
