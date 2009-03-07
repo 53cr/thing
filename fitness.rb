@@ -1,7 +1,6 @@
 #diet is array of item names
 class Diet
   def fitness
-    @@fitnesses ||= {}
     sorted = @items.sort
     @@fitnesses[sorted] ||= self.fitness_nonmemo
   end
@@ -17,6 +16,8 @@ class Diet
       score -= 1 * (2000 - total_cals).abs
 
       # Remove 5 pts of each percentage of fatty calories over 25%
+      total_fat_over_25 = diet.percentage_of_calories_from_fat - 25
+      score -= 5 * ( total_fat_over_25 > 0 ? total_fat_over_25 : 0 ) # only care about OVER
 
       # Remove 2 pts for each 1g of protein over or under 100
       total_protein = diet.inject(0) {|sum,item| sum + Integer($ITEMS[item][:protein]) }
