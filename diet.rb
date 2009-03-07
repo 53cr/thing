@@ -26,10 +26,10 @@ class Diet
     end
     evo = self.send(meth)
 
-    current_fitness = self.fitness
     new_fitness     = evo.fitness
 
-    if ( evo.constraints_ok? and (evo.fitness > self.fitness) )
+    if ( evo.constraints_ok? and (new_fitness > self.fitness) )
+      puts "New best: "
       return evo
     else
       return self
