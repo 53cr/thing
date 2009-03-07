@@ -29,7 +29,7 @@ class Diet
     current_fitness = self.fitness
     new_fitness     = evo.fitness
 
-    return (new_fitness > current_fitness) ? evo : this
+    return (new_fitness > current_fitness) ? evo : self
   end
 
   private
