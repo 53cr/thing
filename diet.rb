@@ -24,7 +24,6 @@ class Diet
     size.times do
       @items << $IKEYS[rand($IKEYS.size)]
     end
-    puts ">> reinit with: #{self.to_s}"
     @stale = 0
   end
   
