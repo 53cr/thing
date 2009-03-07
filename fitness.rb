@@ -16,7 +16,7 @@ class Diet
       total_fiber = diet.inject(0) {|sum,item| sum + Integer($ITEMS[item][:fiber]) }
       score -= 3 * (20 - total_fiber).abs
       # Remove 50 pts for each missing portion of fruits, vegetables, milk, or meat
-      types = diet.map { |item| $ITEMS[item][:type] }.inject(Hash(0)) # NOT DONE
+      types = diet.map { |item| $ITEMS[item][:type] }.inject(Hash.new(0)) # NOT DONE
       # Remove 20 pts for each extra portion of fruits, vegetables, milk or meat
       # Remove 2 pts for each 1g of trans or saturated fats
     end
