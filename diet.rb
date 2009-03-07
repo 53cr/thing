@@ -9,13 +9,20 @@ require 'fitness'
 class Diet
 
   @@fitnesses = {}
+  @@best = 0
   
   attr_accessor :items
   
   def initialize(arr)
     @items = arr
+    @stale = 0
   end
 
+  def seed
+    @items = ["Oranges", "Oranges", "Oranges", "Oranges"]
+    @stale = 0
+  end
+  
   def percentage_of_calories_from_fats
     items = @items.map do |item|
       $ITEMS[item]
@@ -33,6 +40,8 @@ class Diet
   end
   
   def mutate
+    seed if @stale == 1000
+
     case rand(10)
     when 0 then
       meth = :mutate_insert
@@ -46,10 +55,14 @@ class Diet
     new_fitness = evo.fitness
     old_fitness = self.fitness
 
-    #puts "OLD: #{old_fitness}; NEW #{new_fitness}"
-    
+    @stale += 1 if new_fitness == old_fitness 
+
     if ( evo.constraints_ok? and (new_fitness > self.fitness) )
-      puts "New best [#{1000-new_fitness}]: #{evo.items.sort.join ' : '}"
+      @stale = 0
+      if new_fitness > @@best
+        @@best = new_fitness
+        puts "New best [#{1000-new_fitness}]: #{evo.items.sort.join ' : '}"
+      end
       return evo
     else
       return self
@@ -87,6 +100,7 @@ end
 
 if __FILE__ == $0
   diet = Diet.new(["Oranges", "Oranges", "Oranges", "Oranges"])
+
 
   loop do
     diet = diet.mutate
