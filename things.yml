@@ -1,5 +1,6 @@
 --- 
 Vanilla Yogurt: 
+  :type: "milk"
   :vitamin_a: "5"
   :sodium: "113"
   :vitamin_c: "2"
@@ -16,6 +17,7 @@ Vanilla Yogurt:
   :protein: "9"
   :cholesterol: "32"
 Corn Flakes: 
+  :type: "grain"
   :vitamin_a: "10"
   :sodium: "202"
   :vitamin_c: "10"
@@ -32,6 +34,7 @@ Corn Flakes:
   :protein: "2"
   :cholesterol: "0"
 Spinach, Cooked: 
+  :type: "fruit and vegetable"
   :vitamin_a: "377"
   :sodium: "126"
   :vitamin_c: "29"
@@ -48,6 +51,7 @@ Spinach, Cooked:
   :protein: "5"
   :cholesterol: "0"
 Green Pepper: 
+  :type: "fruit and vegetable"
   :vitamin_a: "11"
   :sodium: "4"
   :vitamin_c: "200"
@@ -64,6 +68,7 @@ Green Pepper:
   :protein: "1"
   :cholesterol: "0"
 Tofu: 
+  :type: "fruit and vegetable"
   :vitamin_a: "2"
   :sodium: "9"
   :vitamin_c: "0"
@@ -80,6 +85,7 @@ Tofu:
   :protein: "10"
   :cholesterol: "0"
 4% Milk: 
+  :type: "milk"
   :vitamin_a: "7"
   :sodium: "120"
   :vitamin_c: "6"
@@ -95,7 +101,8 @@ Tofu:
   :saturated_fat: "6"
   :protein: "8"
   :cholesterol: "34"
-Regular Paste, Cooked: 
+Regular Pasta, Cooked: 
+  :type: "grain"
   :vitamin_a: "0"
   :sodium: "3"
   :vitamin_c: "0"
@@ -112,6 +119,7 @@ Regular Paste, Cooked:
   :protein: "3"
   :cholesterol: "19"
 Tomato: 
+  :type: "fruit and vegetable"
   :vitamin_a: "25"
   :sodium: "7"
   :vitamin_c: "32"
@@ -128,6 +136,7 @@ Tomato:
   :protein: "1"
   :cholesterol: "0"
 Brown Rice, Cooked (195g): 
+  :type: "fruit and vegetable"
   :vitamin_a: "0"
   :sodium: "2"
   :vitamin_c: "0"
@@ -144,6 +153,7 @@ Brown Rice, Cooked (195g):
   :protein: "5"
   :cholesterol: "0"
 Red Potato, Baked: 
+  :type: "fruit and vegetable"
   :vitamin_a: "1"
   :sodium: "36"
   :vitamin_c: "63"
@@ -160,6 +170,7 @@ Red Potato, Baked:
   :protein: "7"
   :cholesterol: "0"
 Chicken Bread: 
+  :type: "meat"
   :vitamin_a: "1"
   :sodium: "103"
   :vitamin_c: "0"
@@ -176,6 +187,7 @@ Chicken Bread:
   :protein: "43"
   :cholesterol: "119"
 Enriched Soya Drink: 
+  :type: "fruit and vegetable"
   :vitamin_a: "22"
   :sodium: "96"
   :vitamin_c: "0"
@@ -192,6 +204,7 @@ Enriched Soya Drink:
   :protein: "5"
   :cholesterol: "0"
 White Bread (1 slice): 
+  :type: "grain"
   :vitamin_a: "0"
   :sodium: "7"
   :vitamin_c: "0"
@@ -208,6 +221,7 @@ White Bread (1 slice):
   :protein: "2"
   :cholesterol: "0"
 Wheat Bread (1 slice): 
+  :type: "grain"
   :vitamin_a: "0"
   :sodium: "132"
   :vitamin_c: "0"
@@ -224,6 +238,7 @@ Wheat Bread (1 slice):
   :protein: "4"
   :cholesterol: "0"
 Egg: 
+  :type: "meat"
   :vitamin_a: "7"
   :sodium: "94"
   :vitamin_c: "0"
@@ -240,6 +255,7 @@ Egg:
   :protein: "6"
   :cholesterol: "210"
 Spinach Pasta, Cooked: 
+  :type: "grain"
   :vitamin_a: "1"
   :sodium: "3"
   :vitamin_c: "0"
@@ -256,6 +272,7 @@ Spinach Pasta, Cooked:
   :protein: "3"
   :cholesterol: "19"
 1/2 Bagel: 
+  :type: "grain"
   :vitamin_a: "0"
   :sodium: "139"
   :vitamin_c: "0"
@@ -272,6 +289,7 @@ Spinach Pasta, Cooked:
   :protein: "3"
   :cholesterol: "0"
 Orange Juice: 
+  :type: "fruit and vegetable"
   :vitamin_a: "7"
   :sodium: "2"
   :vitamin_c: "177"
@@ -288,6 +306,7 @@ Orange Juice:
   :protein: "2"
   :cholesterol: "0"
 Mozzarella Cheese: 
+  :type: "milk"
   :vitamin_a: "15"
   :sodium: "702"
   :vitamin_c: "0"
@@ -304,6 +323,7 @@ Mozzarella Cheese:
   :protein: "25"
   :cholesterol: "88"
 Shrimp, fried: 
+  :type: "meat"
   :vitamin_a: "3"
   :sodium: "292"
   :vitamin_c: "2"
@@ -320,6 +340,7 @@ Shrimp, fried:
   :protein: "18"
   :cholesterol: "150"
 Hot Oatmeal: 
+  :type: "grain"
   :vitamin_a: "25"
   :sodium: "105"
   :vitamin_c: "0"
@@ -336,6 +357,7 @@ Hot Oatmeal:
   :protein: "5"
   :cholesterol: "0"
 Carrots: 
+  :type: "fruit and vegetable"
   :vitamin_a: "430"
   :sodium: "88"
   :vitamin_c: "13"
@@ -352,6 +374,7 @@ Carrots:
   :protein: "1"
   :cholesterol: "0"
 Banana: 
+  :type: "fruit and vegetable"
   :vitamin_a: "3"
   :sodium: "2"
   :vitamin_c: "33"
@@ -368,6 +391,7 @@ Banana:
   :protein: "2"
   :cholesterol: "0"
 Nuts: 
+  :type: "meat"
   :vitamin_a: "7"
   :sodium: "2"
   :vitamin_c: "177"
@@ -384,6 +408,7 @@ Nuts:
   :protein: "2"
   :cholesterol: "0"
 Broccoli: 
+  :type: "fruit and vegetables"
   :vitamin_a: "11"
   :sodium: "30"
   :vitamin_c: "135"
@@ -400,6 +425,7 @@ Broccoli:
   :protein: "3"
   :cholesterol: "0"
 Apple: 
+  :type: "fruit and vegetables"
   :vitamin_a: "1"
   :sodium: "1"
   :vitamin_c: "10"
@@ -416,6 +442,7 @@ Apple:
   :protein: "0"
   :cholesterol: "0"
 Oranges: 
+  :type: "fruit and vegetables"
   :vitamin_a: "8"
   :sodium: "0"
   :vitamin_c: "139"
@@ -432,6 +459,7 @@ Oranges:
   :protein: "1"
   :cholesterol: "0"
 Lean Beef: 
+  :type: "meat"
   :vitamin_a: "0"
   :sodium: "160"
   :vitamin_c: "0"
@@ -448,6 +476,7 @@ Lean Beef:
   :protein: "72"
   :cholesterol: "208"
 2% Milk: 
+  :type: "milk"
   :vitamin_a: "9"
   :sodium: "100"
   :vitamin_c: "1"
@@ -464,6 +493,7 @@ Lean Beef:
   :protein: "8"
   :cholesterol: "20"
 1/2 Pita Bread: 
+  :type: "grain"
   :vitamin_a: "0"
   :sodium: "340"
   :vitamin_c: "0"
@@ -480,6 +510,7 @@ Lean Beef:
   :protein: "6"
   :cholesterol: "0"
 Lettuce: 
+  :type: "fruit and vegetable"
   :vitamin_a: "7"
   :sodium: "1"
   :vitamin_c: "1"
