@@ -49,7 +49,7 @@ class Diet
     #puts "OLD: #{old_fitness}; NEW #{new_fitness}"
     
     if ( evo.constraints_ok? and (new_fitness > self.fitness) )
-      puts "New best [#{1000-new_fitness}]: #{evo.items.sort.join ' : '}"
+      puts "New best [#{1000-new_fitness}]:".ljust(20) + evo.to_s
       return evo
     else
       return self
@@ -83,13 +83,16 @@ class Diet
     (rand(2) == 0) ? d.mutate_swap : d
   end
 
+  def to_s
+    hash = Hash.new(0)
+    items.sort.map { |value| hash[value]+=1} 
+    hash.map { |key,value| "#{value} x #{key}" }.join(', ')
+  end
 end
 
 if __FILE__ == $0
   diet = Diet.new(["Oranges", "Oranges", "Oranges", "Oranges"])
-
   loop do
     diet = diet.mutate
   end
-
 end
