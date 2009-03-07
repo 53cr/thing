@@ -36,6 +36,10 @@ class Diet
     end
   end
 
+  def constraints_ok?
+    @items.size <= 10
+  end
+  
   private
   def mutate_insert
     new_item = $IKEYS[rand($IKEYS.size)]
