@@ -61,7 +61,7 @@ class Diet
       @stale = 0
       if new_fitness > @@best
         @@best = new_fitness
-      puts "New best [#{1000-new_fitness}]:".ljust(20) + evo.to_s
+      puts "New best [#{1000-new_fitness}]:\n" + evo.to_s
       end
       return evo
     else
@@ -96,10 +96,38 @@ class Diet
     (rand(2) == 0) ? d.mutate_swap : d
   end
 
+  def nutritional_values
+    values = Hash.new(0)
+    items.map do |key,value|
+      [:vitamin_a,
+       :sodium, 
+       :vitamin_c, 
+       :calories, 
+       :total_carbs, 
+       :calcium, 
+       :calories_from_fat, 
+       :fiber, 
+       :iron, 
+       :total_fat, 
+       :sugars, 
+       :size, 
+       :saturated_fat, 
+       :protein, 
+       :cholesterol].each do |name|
+         values[name] += $ITEMS[key][name].to_i
+      end
+    end
+    output = ''
+    values.each do |key,value|
+      output << "#{key}: ".ljust(25,'.') +" #{value} \n"
+    end
+    output
+  end
+
   def to_s
     hash = Hash.new(0)
     items.sort.map { |value| hash[value]+=1} 
-    hash.map { |key,value| "#{value} x #{key}" }.join(', ')
+    hash.map { |key,value| "#{value} x #{key}" }.join("\n") + "\n" + nutritional_values.to_s
   end
 end
 
