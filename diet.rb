@@ -59,8 +59,7 @@ class Diet
   def constraints_ok?
     @items.size <= 10
   end
-  
-  private
+
   def mutate_insert
     new_item = $IKEYS[rand($IKEYS.size)]
     Diet.new(@items.dup.push(new_item))
@@ -75,7 +74,12 @@ class Diet
   def mutate_swap
     new_items = @items.dup
     new_items[rand(new_items.size)] = $IKEYS[rand($IKEYS.size)]
-    Diet.new(new_items)
+    d = Diet.new(new_items)
+    if rand(2) == 0
+      d.mutate_swap
+    else
+      d
+    end
   end
 
 end
@@ -83,7 +87,7 @@ end
 if __FILE__ == $0
   diet = Diet.new(["Oranges", "Oranges", "Oranges", "Oranges"])
 
-  100000.times do
+  loop do
     diet = diet.mutate
   end
 
