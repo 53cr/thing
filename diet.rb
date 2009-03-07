@@ -49,7 +49,7 @@ class Diet
     #puts "OLD: #{old_fitness}; NEW #{new_fitness}"
     
     if ( evo.constraints_ok? and (new_fitness > self.fitness) )
-      puts "New best [#{new_fitness}]: (#{evo.items.join '), ('})"
+      puts "New best [#{1000-new_fitness}]: (#{evo.items.join '), ('})"
       return evo
     else
       return self
