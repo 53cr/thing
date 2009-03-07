@@ -4,7 +4,6 @@ require 'yaml'
 $ITEMS = YAML.load(File.read('things.yml'))
 $IKEYS = $ITEMS.keys
 
-require 'constraints'
 require 'fitness'
 
 class Diet
