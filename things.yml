@@ -187,7 +187,7 @@ Chicken Bread:
   :protein: "43"
   :cholesterol: "119"
 Enriched Soya Drink: 
-  :type: "fruit and vegetable"
+  :type:  "milk"
   :vitamin_a: "22"
   :sodium: "96"
   :vitamin_c: "0"
