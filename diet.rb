@@ -62,24 +62,25 @@ class Diet
 
   def mutate_insert
     new_item = $IKEYS[rand($IKEYS.size)]
-    Diet.new(@items.dup.push(new_item))
+    d = Diet.new(@items.dup.push(new_item))
+    (rand(2) == 0) ? d.mutate_insert : d
   end
 
   def mutate_delete
     new_items = @items.dup
     new_items.delete_at( rand(new_items.size) )
-    Diet.new(new_items)
+    d = Diet.new(new_items)
+    if d.items.size == 1
+      return d
+    end
+    (rand(2) == 0) ? d.mutate_delete : d
   end
 
   def mutate_swap
     new_items = @items.dup
     new_items[rand(new_items.size)] = $IKEYS[rand($IKEYS.size)]
     d = Diet.new(new_items)
-    if rand(2) == 0
-      d.mutate_swap
-    else
-      d
-    end
+    (rand(2) == 0) ? d.mutate_swap : d
   end
 
 end
