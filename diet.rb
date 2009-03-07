@@ -1,8 +1,11 @@
 require 'rubygems'
 require 'yaml'
 
-ITEMS = YAML.load(File.read('things.yml'))
-IKEYS = ITEMS.keys
+$ITEMS = YAML.load(File.read('things.yml'))
+$IKEYS = $ITEMS.keys
+
+require 'constraints'
+require 'fitness'
 
 class Diet
 
@@ -12,10 +15,6 @@ class Diet
     @items = arr
   end
   
-  def fitness
-    return 1
-  end
-
   def mutate
     case rand(10)
     when 0:
@@ -35,7 +34,7 @@ class Diet
 
   private
   def mutate_insert
-    new_item = IKEYS[rand(IKEYS.size)]
+    new_item = $IKEYS[rand($IKEYS.size)]
     Diet.new(@items.push(new_item))
   end
 
@@ -47,7 +46,7 @@ class Diet
 
   def mutate_swap
     new_items = @items
-    new_items[rand(new_items.size)] = IKEYS[rand(IKEYS.size)]
+    new_items[rand(new_items.size)] = $IKEYS[rand($IKEYS.size)]
     Diet.new(@items)
   end
 
