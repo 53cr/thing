@@ -132,26 +132,38 @@ class Diet
     end
     output
   end
+  def cost
+    hash = Hash.new(0)
+    items.map { |value| hash[value]+=1}
+    cost = 0
+    hash.each do |key,value|
+      cost += ($COSTS[key]||1 )* value
+    end
+    cost
+  end
   def ingredients
     hash = Hash.new(0)
-    items.sort.map { |value| hash[value]+=1}
+    items.map { |value| hash[value]+=1}
     hash.map { |key,value| "#{value} x #{key}" }
   end
   def to_s
     output = []
     output << '-'*35
     output << "\n"
+    output << 'Cost:'
+    output << "$%.2f" % cost
+    output << "\n"
     output << 'Nutritional Values:'
     output += ingredients
     output << "\n"
-    output << "Nutritional Values:"
+    output << 'Nutritional Values:'
     output += nutritional_values
     output.join("\n")
   end
 end
 
 if __FILE__ == $0
-  diet = Diet.new(["Oranges", "Oranges", "Oranges", "Oranges"])
+  diet = Diet.new(['Oranges', 'Oranges', 'Oranges', 'Oranges'])
   loop do
     diet = diet.mutate
   end
