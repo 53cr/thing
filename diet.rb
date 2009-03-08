@@ -5,6 +5,29 @@ $ITEMS = YAML.load(File.read('things.yml'))
 $IKEYS = $ITEMS.keys
 $COSTS = YAML.load(File.read('costs.yml'))
 
+adjustments = {}
+adjustments['1/2 Pita Bread'] = 1*5
+adjustments['Banana'] = 7*5
+adjustments['Broccoli'] = 1*5
+adjustments['Chicken Bread'] = 4*5
+adjustments['Corn Flakes'] = 36*5
+adjustments['Egg'] = 4*5
+adjustments['Enriched Soya Drink'] = 4*5
+adjustments['Green Pepper'] = 1*5
+adjustments['Kamut, Pasta'] = 26*5
+adjustments['Kiwi'] = 2*5
+adjustments['Nuts'] = 4*5
+adjustments['Orange Juice'] =13*5
+adjustments['Regular Pasta, Cooked'] = 1*5
+adjustments['Rye Bread'] = 1*5
+adjustments['Tomato'] = 20*5
+
+adjustments.each do |k,v|
+   # Figure out increase
+  $COSTS[k] = 1.0 if !$COSTS[k]
+  $COSTS[k] += adjustments[k] * 0.001
+end
+
 require 'fitness'
 NUM_BEST = 5
 class Diet
@@ -134,7 +157,7 @@ class Diet
     items.map { |value| hash[value]+=1}
     cost = 0
     hash.each do |key,value|
-      cost += ($COSTS[key]||1 )* value
+      cost += ($COSTS[key]||1.0 ) * value
     end
     cost
   end
@@ -180,4 +203,6 @@ if __FILE__ == $0
   loop do
     diet = diet.mutate
   end
+
+
 end
