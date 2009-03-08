@@ -47,7 +47,7 @@ class Diet
   end
 
   def seed
-    size = rand(9)+1
+    size = rand(20)+1
     @items = []
     size.times do
       @items << $IKEYS[rand($IKEYS.size)]
@@ -57,7 +57,7 @@ class Diet
 
   def mutate
     
-    if @stale == 10000
+    if @stale == 1000
       puts 'seeding'
       seed 
     end
@@ -73,7 +73,7 @@ class Diet
     new_fitness = evo.fitness
     old_fitness = self.fitness
    
-    @stale += 1 if new_fitness >= old_fitness
+    @stale += 1 if new_fitness == old_fitness
 
     if ( evo.constraints_ok? and (new_fitness > self.fitness))
       @stale = 0
@@ -108,15 +108,11 @@ class Diet
   end
 
   def mutate_delete
-    if @items.size == 1
-      return self
-    end
+    return self if @items.size == 1
     new_items = @items.dup
     new_items.delete_at( rand(new_items.size) )
     d = Diet.new(new_items)
-    if d.items.size == 1
-      return d
-    end
+    return d if d.items.size == 1
     (rand(2) == 0) ? d.mutate_delete : d
   end
 
