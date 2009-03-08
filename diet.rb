@@ -77,7 +77,7 @@ class Diet
       @stale = 0
       if new_fitness > @@best
         @@best = new_fitness
-        puts "\n\n"+"-" *30 + "\n" +
+        puts "\n\n"+"-" *35 + "\n" +
           "New best [#{1000-new_fitness}]:\n" +
           evo.to_s
         @@bests << evo
