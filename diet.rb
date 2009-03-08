@@ -56,22 +56,24 @@ class Diet
   end
 
   def mutate
-    seed if @stale == 1000
-
-    case rand(10)
-    when 0 then
-      meth = :mutate_insert
-    when 1 then
-      meth = :mutate_delete
-    else
-      meth = :mutate_swap
+    
+    if @stale == 10000
+      puts 'seeding'
+      seed 
     end
+
+    meth = case rand(10)
+    when 0 then :mutate_insert
+    when 1 then :mutate_delete
+    else        :mutate_swap
+    end
+
     evo = self.send(meth)
 
     new_fitness = evo.fitness
     old_fitness = self.fitness
-
-    @stale += 1 if new_fitness == old_fitness
+   
+    @stale += 1 if new_fitness >= old_fitness
 
     if ( evo.constraints_ok? and (new_fitness > self.fitness))
       @stale = 0
@@ -152,6 +154,7 @@ class Diet
     end
     output
   end
+
   def cost
     hash = Hash.new(0)
     items.map { |value| hash[value]+=1}
@@ -161,20 +164,22 @@ class Diet
     end
     cost
   end
+
   def ingredients
     hash = Hash.new(0)
     items.map { |value| hash[value]+=1}
     hash.map { |key,value| "#{value} x #{key}".ljust(30) + "#{"$%.2f"%($COSTS[key] || 1)}" }
   end
+
   def to_s
     output = []
     output << '-'*35
-    output << "\n"
-    output << 'Cost:'
-    output << "$%.2f" % cost
-    output << "\n"
+    output << ''
     output << 'Ingerients Values:'
     output += ingredients
+    output << '-'*35
+    output << "#{"$%.2f" % cost}".rjust(35)
+
 #    output << "Bests: #{@@bests.size}"
 #    output << "\n"
 #    output << 'Nutritional Values:'
@@ -203,6 +208,4 @@ if __FILE__ == $0
   loop do
     diet = diet.mutate
   end
-
-
 end
