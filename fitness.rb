@@ -8,7 +8,7 @@ class Diet
   def fitness_nonmemo
     diet = items
     score = 0
-    if constraints_ok?
+    if constraints_ok? and cost < 20
       # Start with a base score of 1000
       score = 1000
 
@@ -66,7 +66,9 @@ class Diet
       end
 
       # Remove 2 pts for each 1g of trans or saturated fats
-      score -= 2 * diet.inject(0) {|sum,item| sum + $ITEMS[item][:saturated_fat].to_i } # Add trans fat
+      score -= 2 * diet.inject(0) {|sum,item| sum + $ITEMS[item][:saturated_fat].to_i }
+
+      score /= 2.0 if cost > 15
     end
     score
   end

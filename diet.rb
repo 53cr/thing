@@ -47,7 +47,7 @@ class Diet
   end
 
   def seed
-    size = rand(9)+1
+    size = rand(20)+1
     @items = []
     size.times do
       @items << $IKEYS[rand($IKEYS.size)]
@@ -56,10 +56,10 @@ class Diet
   end
 
   def mutate
-    
+
     if @stale == 10000
       puts 'seeding'
-      seed 
+      seed
     end
 
     meth = case rand(10)
@@ -72,7 +72,7 @@ class Diet
 
     new_fitness = evo.fitness
     old_fitness = self.fitness
-   
+
     @stale += 1 if new_fitness >= old_fitness
 
     if ( evo.constraints_ok? and (new_fitness > self.fitness))
@@ -98,7 +98,7 @@ class Diet
   end
 
   def constraints_ok?
-    @items.uniq.size <= 10 && cost <= 15.00
+    @items.uniq.size <= 10
   end
 
   def mutate_insert
