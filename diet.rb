@@ -56,13 +56,8 @@ class Diet
   end
 
   def mutate
-<<<<<<< HEAD:diet.rb
     
-    if @stale == 1000
-=======
-
     if @stale == 10000
->>>>>>> 28c7966a3f00c59abbc975caf696c5aaf18206f5:diet.rb
       puts 'seeding'
       seed
     end
