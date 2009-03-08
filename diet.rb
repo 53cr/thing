@@ -56,10 +56,15 @@ class Diet
   end
 
   def mutate
+<<<<<<< HEAD:diet.rb
     
     if @stale == 1000
+=======
+
+    if @stale == 10000
+>>>>>>> 28c7966a3f00c59abbc975caf696c5aaf18206f5:diet.rb
       puts 'seeding'
-      seed 
+      seed
     end
 
     meth = case rand(10)
@@ -98,7 +103,7 @@ class Diet
   end
 
   def constraints_ok?
-    @items.uniq.size <= 10 && cost <= 15.00
+    @items.uniq.size <= 10
   end
 
   def mutate_insert
