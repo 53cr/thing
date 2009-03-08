@@ -45,7 +45,7 @@ class Diet
 
     @stale += 1 if new_fitness == old_fitness
 
-    if ( evo.constraints_ok? and (new_fitness > self.fitness) )
+    if ( evo.constraints_ok? and (new_fitness > self.fitness) and cost < 15.0)
       @stale = 0
       if new_fitness > @@best
         @@best = new_fitness
@@ -60,7 +60,7 @@ class Diet
   end
 
   def constraints_ok?
-    @items.size <= 10
+    @items.unique.size <= 10
   end
 
   def mutate_insert
