@@ -27,22 +27,6 @@ class Diet
     @stale = 0
   end
 
-  def percentage_of_calories_from_fats
-    items = @items.map do |item|
-      $ITEMS[item]
-    end
-
-    total_cals = items.map do |item|
-      item[:calories].to_i
-    end.inject { |sum,value| sum + value }
-
-    fat_cals = items.map do |item|
-      item[:calories_from_fat].to_i
-    end.inject{ |sum,value| sum + value }
-
-    return 100*(fat_cals / total_cals.to_f).round
-  end
-
   def mutate
     seed if @stale == 1000
 
