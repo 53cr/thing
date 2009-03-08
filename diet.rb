@@ -65,7 +65,7 @@ class Diet
       @stale = 0
       if new_fitness > @@best
         @@best = new_fitness
-      puts "-" *30 + "\n" +
+      puts "\n\n\n"+"-" * 35 + "\n" +
            "New best [#{1000-new_fitness}]:\n" +
             evo.to_s
       end
@@ -126,22 +126,27 @@ class Diet
          values[name] += $ITEMS[key][name].to_i
       end
     end
-    output = ''
+    output = []
     values.each do |key,value|
-      output << "#{key}: ".ljust(25,'.') +" #{value} \n"
+      output << "   #{key}: ".ljust(25,'.') +" #{value}".rjust(8)
     end
     output
   end
-
-  def to_s
+  def ingredients
     hash = Hash.new(0)
     items.sort.map { |value| hash[value]+=1}
+    hash.map { |key,value| "#{value}".rjust(4) +" x #{key}" }
+  end
+  def to_s
     output = []
-    output << '-'*30
-    output += hash.map { |key,value| "#{value} x #{key}" }
+    output << '-'*35
     output << "\n"
-    output << nutritional_values.to_s
-    output.join("\n") + "\n"
+    output << 'Nutritional Values:'
+    output += ingredients
+    output << "\n"
+    output << "Nutritional Values:"
+    output += nutritional_values
+    output.join("\n")
   end
 end
 
