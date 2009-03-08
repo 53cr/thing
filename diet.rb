@@ -6,12 +6,17 @@ $IKEYS = $ITEMS.keys
 $COSTS = YAML.load(File.read('costs.yml'))
 
 require 'fitness'
-
+NUM_BEST = 5
 class Diet
 
   @@fitnesses = {}
   @@best = 0
+  @@bests = []
   attr_accessor :items
+
+  def self.bests
+    @@bests
+  end
 
   def initialize(arr)
     @items = arr
@@ -45,22 +50,30 @@ class Diet
 
     @stale += 1 if new_fitness == old_fitness
 
-    if ( evo.constraints_ok? and (new_fitness > self.fitness) and cost < 15.0)
+    if ( evo.constraints_ok? and (new_fitness > self.fitness))
       @stale = 0
       if new_fitness > @@best
         @@best = new_fitness
-      puts "\n\n"+"-" *30 + "\n" +
-           "New best [#{1000-new_fitness}]:\n" +
-            evo.to_s
+        puts "\n\n"+"-" *30 + "\n" +
+          "New best [#{1000-new_fitness}]:\n" +
+          evo.to_s
+        @@bests << evo
       end
+      reduce_bests
       return evo
     else
       return self
     end
   end
 
+  def reduce_bests
+    if @@bests.size > NUM_BEST
+      @@bests = @@bests.sort {|a,b| b.fitness <=> a.fitness }[0...NUM_BEST]
+    end
+  end
+
   def constraints_ok?
-    @items.uniq.size <= 10
+    @items.uniq.size <= 10 && cost < 15.01
   end
 
   def mutate_insert
@@ -137,17 +150,33 @@ class Diet
     output << 'Cost:'
     output << "$%.2f" % cost
     output << "\n"
-    output << 'Nutritional Values:'
+    output << 'Ingerients Values:'
     output += ingredients
-    output << "\n"
-    output << 'Nutritional Values:'
-    output += nutritional_values
+#    output << "Bests: #{@@bests.size}"
+#    output << "\n"
+#    output << 'Nutritional Values:'
+#    output += nutritional_values
     output.join("\n")
   end
 end
 
 if __FILE__ == $0
   diet = Diet.new(['Oranges', 'Oranges', 'Oranges', 'Oranges'])
+  Kernel.trap("INT") do
+    puts "PRINTING BESTS STATISTICS:"
+    print =*35
+    bests = Diet.bests
+    totals = Hash.new(0)
+    puts bests
+
+    bests.each do |best|
+      best.items.each do |item|
+        totals[item] += best.items.count(item)
+      end
+    end
+    totals.each { |k,v| puts "#{v} x #{k}"}
+    exit
+  end
   loop do
     diet = diet.mutate
   end
