@@ -3,6 +3,7 @@ require 'yaml'
 
 $ITEMS = YAML.load(File.read('things.yml'))
 $IKEYS = $ITEMS.keys
+$COSTS = YAML.load(File.read('costs.yml'))
 
 require 'fitness'
 
@@ -25,19 +26,19 @@ class Diet
     end
     @stale = 0
   end
-  
+
   def percentage_of_calories_from_fats
     items = @items.map do |item|
       $ITEMS[item]
     end
 
-    total_cals = items.map { |item|
+    total_cals = items.map do |item|
       item[:calories].to_i
-    }.inject { |sum,value| sum + value }
+    end.inject { |sum,value| sum + value }
 
-    fat_cals = items.map { |item|
+    fat_cals = items.map do |item|
       item[:calories_from_fat].to_i
-    }.inject{ |sum,value| sum + value }
+    end.inject{ |sum,value| sum + value }
 
     return 100*(fat_cals / total_cals.to_f).round
   end
@@ -58,7 +59,7 @@ class Diet
     new_fitness = evo.fitness
     old_fitness = self.fitness
 
-    @stale += 1 if new_fitness == old_fitness 
+    @stale += 1 if new_fitness == old_fitness
 
     if ( evo.constraints_ok? and (new_fitness > self.fitness) )
       @stale = 0
@@ -108,19 +109,19 @@ class Diet
     values = Hash.new(0)
     items.map do |key,value|
       [:vitamin_a,
-       :sodium, 
-       :vitamin_c, 
-       :calories, 
-       :total_carbs, 
-       :calcium, 
-       :calories_from_fat, 
-       :fiber, 
-       :iron, 
-       :total_fat, 
-       :sugars, 
-       :size, 
-       :saturated_fat, 
-       :protein, 
+       :sodium,
+       :vitamin_c,
+       :calories,
+       :total_carbs,
+       :calcium,
+       :calories_from_fat,
+       :fiber,
+       :iron,
+       :total_fat,
+       :sugars,
+       :size,
+       :saturated_fat,
+       :protein,
        :cholesterol].each do |name|
          values[name] += $ITEMS[key][name].to_i
       end
@@ -136,7 +137,7 @@ class Diet
     hash = Hash.new(0)
     items.sort.map { |value| hash[value]+=1}
     output = []
-    output << '-'*30 
+    output << '-'*30
     output += hash.map { |key,value| "#{value} x #{key}" }
     output << "\n"
     output << nutritional_values.to_s
