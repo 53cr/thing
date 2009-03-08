@@ -49,7 +49,7 @@ class Diet
       @stale = 0
       if new_fitness > @@best
         @@best = new_fitness
-      puts "\n\n"+"-" *30 + "\n" +
+      puts "\n\n"+"-" *35 + "\n" +
            "New best [#{1000-new_fitness}]:\n" +
             evo.to_s
       end
@@ -60,7 +60,7 @@ class Diet
   end
 
   def constraints_ok?
-    @items.uniq.size <= 10 && cost < 15.01
+    @items.uniq.size <= 10 && cost <= 15.00
   end
 
   def mutate_insert
@@ -128,17 +128,16 @@ class Diet
   def ingredients
     hash = Hash.new(0)
     items.map { |value| hash[value]+=1}
-    hash.map { |key,value| "#{value} x #{key}" }
+    hash.map { |key,value| "#{value} x #{key}".ljust(30) + "#{"$%.2f"%($COSTS[key] || 1)}" }
   end
   def to_s
     output = []
     output << '-'*35
     output << "\n"
-    output << 'Cost:'
-    output << "$%.2f" % cost
-    output << "\n"
     output << 'Nutritional Values:'
     output += ingredients
+    output << '-'*35
+    output << "#{"$%.2f" % cost}".rjust(35)
     output << "\n"
     output << 'Nutritional Values:'
     output += nutritional_values
