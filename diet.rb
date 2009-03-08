@@ -60,7 +60,7 @@ class Diet
   end
 
   def constraints_ok?
-    @items.unique.size <= 10
+    @items.uniq.size <= 10
   end
 
   def mutate_insert
