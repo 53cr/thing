@@ -32,9 +32,17 @@ class Diet
       # Remove 20 pts for each extra portion of fruits, vegetables, milk or meat
       types = diet.map { |item| $ITEMS[item][:type] }
       type_totals = Hash.new(0)
+      type_totals["grain"] = types.find_all {|type| type == "grain"}.size
       type_totals["fruit and vegetable"] = types.find_all {|type| type == "fruit and vegetable"}.size
       type_totals["milk"] = types.find_all {|type| type == "milk"}.size
       type_totals["meat"] = types.find_all {|type| type == "meat"}.size
+
+      grain_diff = (6 - type_totals["grain"]).abs
+      if type_totals["milk"] > 6
+        score -= 20 * grain_diff
+      elsif type_totals["milk"] < 6
+        score -= 50 * grain_diff
+      end
 
       milk_diff = (2 - type_totals["milk"]).abs
       if type_totals["milk"] > 2
