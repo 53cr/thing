@@ -62,13 +62,11 @@ class Diet
       seed
     end
 
-    meth = case rand(10)
-    when 0 then :mutate_insert
-    when 1 then :mutate_delete
-    else        :mutate_swap
+    evo = case rand(10)
+    when 0 then mutate_insert
+    when 1 then mutate_delete
+    else        mutate_swap
     end
-
-    evo = self.send(meth)
 
     new_fitness = evo.fitness
     old_fitness = self.fitness
