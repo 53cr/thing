@@ -1,1 +1,2 @@
+Incorrect now that we fixed the algorithm, leaving it around for posterities sake.
 New best [40]:      1 x 2% Milk, 1 x Brown Rice, Cooked (195g), 1 x Chicken Bread, 1 x Kiwi, 1 x Nuts, 4 x Red Potato, Baked, 1 x Vanilla Yogurt
